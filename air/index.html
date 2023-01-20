@@ -237,26 +237,26 @@ init_1674215391079_168();
 </ul>
 
 <style>#id_1674215391083_428.share-buttons {list-style: none; padding: 0;}#id_1674215391083_428.share-buttons li {display: inline;}#id_1674215391083_428.share-buttons .sr-only {position: absolute; clip: rect(1px, 1px, 1px, 1px); padding: 0; border: 0; height: 1px; width: 1px; overflow: hidden;}</style>
-</div></div></div></section><section data-silex-type="container-element" class="editable-style section-element silex-id-1674216951615-0 page-home paged-element" data-silex-id="silex-id-1674216951615-0"><div data-silex-type="container-element" class="editable-style container-element silex-id-1674216951615-1 silex-element-content website-width prevent-draggable" data-silex-id="silex-id-1674216951615-1" style=""><div data-silex-type="container-element" class="editable-style container-element silex-id-1674216958804-2" data-silex-id="silex-id-1674216958804-2" style=""><div data-silex-type="html-element" class="editable-style html-element silex-id-1674216968116-3 silex-component-map silex-use-height-not-minheight silex-element-content-full-height" data-silex-id="silex-id-1674216968116-3" style=""><div class="silex-element-content"><div id="mapdiv_1674217028837_792" class="map"></div>
-<style>#mapdiv_1674217028837_792 {width: 100%; height: 100%;}</style>
+</div></div></div></section><section data-silex-type="container-element" class="editable-style section-element silex-id-1674216951615-0 page-home paged-element" data-silex-id="silex-id-1674216951615-0"><div data-silex-type="container-element" class="editable-style container-element silex-id-1674216951615-1 silex-element-content website-width prevent-draggable" data-silex-id="silex-id-1674216951615-1" style=""><div data-silex-type="container-element" class="editable-style container-element silex-id-1674216958804-2" data-silex-id="silex-id-1674216958804-2" style=""><div data-silex-type="html-element" class="editable-style html-element silex-id-1674216968116-3 silex-component-map silex-use-height-not-minheight silex-element-content-full-height" data-silex-id="silex-id-1674216968116-3" style=""><div class="silex-element-content"><div id="mapdiv_1674217297552_811" class="map"></div>
+<style>#mapdiv_1674217297552_811 {width: 100%; height: 100%;}</style>
 <script>
 
 
-function init_1674217028837_792() {
+function init_1674217297552_811() {
     if(typeof(ol) === 'undefined') {
         // console.warn('Map not ready, restart later')
         // wait for dependencies to be loaded
-        setTimeout(init_1674217028837_792, 1000);
+        setTimeout(init_1674217297552_811, 1000);
         return;
     }
 
     // empty the div before adding the map again
-    $('#mapdiv_1674217028837_792').empty();
+    $('#mapdiv_1674217297552_811').empty();
 
     // apply position and zoom
     // from map URL http://www.openstreetmap.org/#map=18/48.88680/2.34235&layers=C
-    // var params = 'https://www.openstreetmap.org/#map=11/31.3841/73.0488'.match(/.*map=([0-9]*)\/(.*)\/(.*)&layers=(.)/);
-    var params = 'https://www.openstreetmap.org/#map=11/31.3841/73.0488'.match(/.*map=([0-9]*)\/(.*)\/(.*)/);
+    // var params = 'https://www.openstreetmap.org/#map=15/31.4188/73.0860'.match(/.*map=([0-9]*)\/(.*)\/(.*)&layers=(.)/);
+    var params = 'https://www.openstreetmap.org/#map=15/31.4188/73.0860'.match(/.*map=([0-9]*)\/(.*)\/(.*)/);
     if(params) {
         var zoom = parseFloat(params[1]);
         var lat = parseFloat(params[2]);
@@ -269,19 +269,40 @@ function init_1674217028837_792() {
               source: new ol.source.OSM()
             })
           ],
-          target: 'mapdiv_1674217028837_792',
+          target: 'mapdiv_1674217297552_811',
           view: new ol.View({
             center: center,
             zoom: zoom
           })
         });
         
+        var iconFeature = new ol.Feature({
+            geometry: new ol.geom.Point(center)
+        });
+        var vectorSource = new ol.source.Vector({
+            features: [iconFeature]
+        });
+        var vectorLayer = new ol.layer.Vector({
+            source: vectorSource
+        });
+        var iconStyle = new ol.style.Style({
+            image: new ol.style.Icon(({
+                anchor: [0.5, 1],
+                anchorXUnits: 'fraction',
+                anchorYUnits: 'fraction',
+                opacity: 1,
+                src: 'https://editor.silex.me/ce/github/get/testTemplate/main/air/map.png'
+            }))
+        });
+        iconFeature.setStyle(iconStyle);
+        map.addLayer(vectorLayer);
+        
     }
 }
-init_1674217028837_792();
+init_1674217297552_811();
 // $(document).on('silex.resize', function() {
-//     $('#mapdiv_1674217028837_792').empty();
-//     init_1674217028837_792();
+//     $('#mapdiv_1674217297552_811').empty();
+//     init_1674217297552_811();
 // });
 
 </script>
